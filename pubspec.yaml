@@ -1,0 +1,39 @@
+name: synapse
+description: "Synapse: on-device quantitative pupillometer for neurological triage."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Native manually-locked 60–120 fps camera + torch (local plugin, no network).
+  synapse_camera:
+    path: packages/synapse_camera
+
+  # Android runtime camera permission (iOS requests natively in the plugin).
+  permission_handler: ^13.0.2
+  # OS share sheet for the HL7 / FHIR payload – the clinician chooses where it
+  # goes; the app itself has no network access.
+  share_plus: ^13.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    # Bodoni Moda (OFL) – high-contrast Didone serif for headers.
+    - family: BodoniModa
+      fonts:
+        - asset: assets/fonts/BodoniModa.ttf
+    # Inter (OFL) – neutral sans for data readouts (tabular figures).
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
