@@ -89,8 +89,10 @@ public final class SynapseCameraPlugin: NSObject, FlutterPlugin, FlutterStreamHa
         do {
           let reply = try self.configureSession(targetFps: targetFps, minFps: minFps)
           DispatchQueue.main.async { result(reply) }
-        } catch let error as FlutterError {
-          DispatchQueue.main.async { result(error) }
+        } catch let error as SetupError {
+          DispatchQueue.main.async {
+            result(FlutterError(code: error.code, message: error.message, details: nil))
+          }
         } catch {
           DispatchQueue.main.async {
             result(FlutterError(code: "camera", message: error.localizedDescription, details: nil))
@@ -105,14 +107,13 @@ public final class SynapseCameraPlugin: NSObject, FlutterPlugin, FlutterStreamHa
       let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
       device.hasTorch
     else {
-      throw FlutterError(code: "hardware", message: "Rear camera with torch is required", details: nil)
+      throw SetupError(code: "hardware", message: "Rear camera with torch is required")
     }
 
-    guard let (format, achievedFps) = Self.bestFormat(for: device, targetFps: targetFps, minFps: minFps)
-    else {
-      throw FlutterError(
-        code: "fps", message: "No camera format sustains \(minFps) fps", details: nil)
+    guard let best = Self.bestFormat(for: device, targetFps: targetFps, minFps: minFps) else {
+      throw SetupError(code: "fps", message: "No camera format sustains \(minFps) fps")
     }
+    let (format, achievedFps) = best
 
     session.beginConfiguration()
     session.sessionPreset = .inputPriority
@@ -122,7 +123,7 @@ public final class SynapseCameraPlugin: NSObject, FlutterPlugin, FlutterStreamHa
     let input = try AVCaptureDeviceInput(device: device)
     guard session.canAddInput(input) else {
       session.commitConfiguration()
-      throw FlutterError(code: "camera", message: "Cannot add camera input", details: nil)
+      throw SetupError(code: "camera", message: "Cannot add camera input")
     }
     session.addInput(input)
 
@@ -135,7 +136,7 @@ public final class SynapseCameraPlugin: NSObject, FlutterPlugin, FlutterStreamHa
     output.setSampleBufferDelegate(self, queue: videoQueue)
     guard session.canAddOutput(output) else {
       session.commitConfiguration()
-      throw FlutterError(code: "camera", message: "Cannot add video output", details: nil)
+      throw SetupError(code: "camera", message: "Cannot add video output")
     }
     session.addOutput(output)
 
@@ -425,6 +426,13 @@ public final class SynapseCameraPlugin: NSObject, FlutterPlugin, FlutterStreamHa
   /// Microseconds on the mach host clock (same clock as DispatchTime).
   static func hostTimeUs() -> Int64 {
     Int64(DispatchTime.now().uptimeNanoseconds / 1000)
+  }
+
+  /// `FlutterError` is not a Swift `Error`, so setup failures are thrown as
+  /// this and converted at the method-channel boundary.
+  private struct SetupError: Error {
+    let code: String
+    let message: String
   }
 
   private static func clamp<T: Comparable>(_ v: T, _ lo: T, _ hi: T) -> T { min(max(v, lo), hi) }

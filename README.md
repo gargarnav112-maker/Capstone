@@ -84,6 +84,8 @@ flutter test          # 33 tests: CV accuracy, analyzer, HL7/FHIR, WCAG, end-to-
 flutter run --release # on a physical iPhone / Android (Camera2 MANUAL_SENSOR recommended)
 ```
 
+**iPhone:** step-by-step guide in [`docs/IOS_SETUP.md`](docs/IOS_SETUP.md).
+
 Hold the phone 5–10 cm from the eye in a dim room. Centre the pupil in the
 ring and wait for it to turn solid green. Then tap **Scan** and keep still
 for about 4 s. If no camera is available (for example on a simulator), the
