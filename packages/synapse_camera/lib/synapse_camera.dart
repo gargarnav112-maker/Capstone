@@ -149,6 +149,10 @@ class SynapseCamera {
   final MethodChannel _methods;
   final EventChannel _events;
 
+  /// False for software stand-ins (simulator, tests) that need no OS camera
+  /// permission.
+  bool get isHardware => true;
+
   /// Opens the rear (torch-equipped) camera at [targetFps] and configures a
   /// [roiSize]×[roiSize] center crop for the luma stream.
   Future<CameraSession> initialize({

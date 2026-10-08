@@ -330,7 +330,14 @@ class _QualityPanel extends StatelessWidget {
           ),
           for (final w in quality.warnings) ...[
             const SizedBox(height: 10),
-            Text('⚠ $w', style: SynapseType.data(12.5, color: SynapseColors.amber)),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.warning_amber_rounded, size: 16, color: SynapseColors.amber),
+                const SizedBox(width: 6),
+                Expanded(child: Text(w, style: SynapseType.data(12.5, color: SynapseColors.amber))),
+              ],
+            ),
           ],
         ],
       ),

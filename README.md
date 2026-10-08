@@ -86,6 +86,13 @@ flutter run --release # on a physical iPhone / Android (Camera2 MANUAL_SENSOR re
 
 **iPhone:** step-by-step guide in [`docs/IOS_SETUP.md`](docs/IOS_SETUP.md).
 
+**Web (simulated eye):** `flutter build web --release --no-web-resources-cdn`.
+Browsers can't lock ISO or focus, or fire the torch, so the web build scans a
+simulated eye (`lib/demo/simulated_camera.dart`). The eye has a healthy,
+sluggish or fixed reflex, with hand tremor and sensor noise. Its frames go
+through the same vision pipeline and analysis as the camera's frames. On
+the web, the pipeline runs inline because browsers have no isolates.
+
 Hold the phone 5–10 cm from the eye in a dim room. Centre the pupil in the
 ring and wait for it to turn solid green. Then tap **Scan** and keep still
 for about 4 s. If no camera is available (for example on a simulator), the

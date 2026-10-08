@@ -17,6 +17,9 @@ class FakeCamera extends SynapseCamera {
 
   final PlrModel model;
   final double fps;
+
+  @override
+  bool get isHardware => false;
   final calls = <String>[];
   final _frames = StreamController<CameraLumaFrame>.broadcast();
   Timer? _timer;

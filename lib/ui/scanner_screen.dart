@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../biomarkers/plr_models.dart';
 import '../demo/demo_scan.dart';
+import '../demo/simulated_camera.dart';
+import '../demo/simulated_eye_view.dart';
 import '../hardware/hardware_sync_controller.dart';
 import 'liquid_results_dashboard.dart';
 import 'theme.dart';
@@ -90,8 +92,16 @@ class _ScannerScreenState extends State<ScannerScreen> {
               const SizedBox(height: 2),
               Text('Quantitative pupillometry · on-device',
                   style: SynapseType.data(12.5, color: SynapseColors.textSecondary)),
+              if (_c.camera case final SimulatedCamera sim) ...[
+                const SizedBox(height: 12),
+                _PatientSelector(
+                  value: sim.patient,
+                  enabled: !busy,
+                  onChanged: (p) => setState(() => sim.patient = p),
+                ),
+              ],
               const SizedBox(height: 14),
-              Expanded(child: _Viewfinder(controller: _c)),
+              Expanded(child: RepaintBoundary(child: _Viewfinder(controller: _c))),
               const SizedBox(height: 14),
               _StatusLine(controller: _c, onDemo: () => _openResult(buildDemoScan())),
               const SizedBox(height: 12),
@@ -100,6 +110,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 child: _c.phase.isRecording || _c.phase == ScanPhase.analyzing
                     ? LiquidGlass(
                         key: const ValueKey('live'),
+                        blur: 0,
                         padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
                         child: ValueListenableBuilder<List<KinematicPoint>>(
                           valueListenable: _c.liveCurve,
@@ -160,18 +171,21 @@ class _Viewfinder extends StatelessWidget {
           return Stack(
             fit: StackFit.expand,
             children: [
-              FittedBox(
-                fit: BoxFit.cover,
-                clipBehavior: Clip.hardEdge,
-                child: SizedBox(
-                  width: pw,
-                  height: ph,
-                  child: RotatedBox(
-                    quarterTurns: session.quarterTurns,
-                    child: Texture(textureId: session.textureId, filterQuality: FilterQuality.low),
+              if (controller.camera case final SimulatedCamera sim)
+                SimulatedEyeView(camera: sim)
+              else
+                FittedBox(
+                  fit: BoxFit.cover,
+                  clipBehavior: Clip.hardEdge,
+                  child: SizedBox(
+                    width: pw,
+                    height: ph,
+                    child: RotatedBox(
+                      quarterTurns: session.quarterTurns,
+                      child: Texture(textureId: session.textureId, filterQuality: FilterQuality.low),
+                    ),
                   ),
                 ),
-              ),
               Center(
                 child: TargetingReticle(
                   radius: roi / 2,
@@ -186,12 +200,16 @@ class _Viewfinder extends StatelessWidget {
               Positioned(
                 left: 14,
                 top: 14,
-                child: _Chip(text: '${session.fps.toStringAsFixed(0)} FPS'),
+                child: _Chip(
+                  text: controller.camera is SimulatedCamera
+                      ? 'SIMULATED EYE · ${session.fps.toStringAsFixed(0)} FPS'
+                      : '${session.fps.toStringAsFixed(0)} FPS',
+                ),
               ),
               if (controller.sensorLock != null && controller.phase.isBusy)
                 const Positioned(
-                  right: 14,
-                  top: 14,
+                  left: 14,
+                  top: 54,
                   child: _Chip(text: 'ISO · AF · AE LOCKED', color: SynapseColors.neonGreen),
                 ),
             ],
@@ -268,6 +286,7 @@ class _EyeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return LiquidGlass(
       radius: 18,
+      blur: 0,
       padding: const EdgeInsets.all(4),
       elevation: 0.5,
       child: Row(
@@ -298,6 +317,47 @@ class _EyeSelector extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+/// Simulator only: which reflex the synthetic patient will show.
+class _PatientSelector extends StatelessWidget {
+  const _PatientSelector({required this.value, required this.onChanged, required this.enabled});
+
+  final SimulatedPatient value;
+  final ValueChanged<SimulatedPatient> onChanged;
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('SIMULATED PATIENT', style: SynapseType.label()),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final p in SimulatedPatient.values)
+                ChoiceChip(
+                  label: Text(p.label),
+                  selected: p == value,
+                  onSelected: enabled ? (_) => onChanged(p) : null,
+                  showCheckmark: false,
+                  labelStyle: SynapseType.data(13,
+                      weight: FontWeight.w600,
+                      color: p == value ? Colors.black : SynapseColors.textPrimary),
+                  selectedColor: SynapseColors.textPrimary,
+                  backgroundColor: Colors.white.withValues(alpha: 0.05),
+                  side: const BorderSide(color: Colors.white24),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

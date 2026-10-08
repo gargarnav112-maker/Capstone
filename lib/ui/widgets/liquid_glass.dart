@@ -32,6 +32,10 @@ class LiquidGlass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final r = BorderRadius.circular(radius);
+    final body = CustomPaint(
+      painter: _GlassPainter(radius: radius, tint: tint),
+      child: Padding(padding: padding, child: child),
+    );
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: r,
@@ -51,13 +55,11 @@ class LiquidGlass extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: r,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-          child: CustomPaint(
-            painter: _GlassPainter(radius: radius, tint: tint),
-            child: Padding(padding: padding, child: child),
-          ),
-        ),
+        // blur == 0 skips the backdrop pass entirely: on live, 60 Hz screens
+        // re-sampling the backdrop every frame is the dominant GPU cost.
+        child: blur > 0
+            ? BackdropFilter(filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur), child: body)
+            : body,
       ),
     );
   }

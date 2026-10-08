@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io' show Platform;
-import 'dart:isolate';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -97,6 +95,11 @@ class HardwareSyncConfig {
 /// so Dart event-loop jitter cannot shift the stimulus relative to the data.
 /// Frames are processed in memory on a background isolate and discarded;
 /// nothing is written to disk or sent over a network.
+PlrAnalysis _runAnalysis((PlrAnalyzer, List<FrameSample>, int) job) {
+  final (analyzer, frames, onUs) = job;
+  return analyzer.analyze(frames, PlrAnalyzer.detectStimulus(frames, commandOnUs: onUs));
+}
+
 class HardwareSyncController extends ChangeNotifier {
   HardwareSyncController({
     SynapseCamera? camera,
@@ -105,6 +108,7 @@ class HardwareSyncController extends ChangeNotifier {
   }) : _camera = camera ?? SynapseCamera();
 
   final SynapseCamera _camera;
+  SynapseCamera get camera => _camera;
   final HardwareSyncConfig config;
   final PlrAnalyzer analyzer;
 
@@ -141,6 +145,8 @@ class HardwareSyncController extends ChangeNotifier {
   /// (planned, then measured) flash onset.
   final ValueNotifier<List<KinematicPoint>> liveCurve = ValueNotifier(const []);
   ConstantVelocityKalman? _liveFilter;
+  final List<KinematicPoint> _livePoints = [];
+  DateTime _lastUi = DateTime.fromMillisecondsSinceEpoch(0);
 
   // ---- Timeline state (all in native µs).
   int _inFlight = 0;
@@ -152,6 +158,7 @@ class HardwareSyncController extends ChangeNotifier {
   int? _recordEndUs;
   final List<PupilObservation> _recorded = [];
   Completer<void>? _drained;
+  DateTime _lastProgress = DateTime.now();
 
   // ------------------------------------------------------------------ setup
 
@@ -159,7 +166,7 @@ class HardwareSyncController extends ChangeNotifier {
     if (_phase != ScanPhase.idle && _phase != ScanPhase.error) return;
     _setPhase(ScanPhase.initializing);
     try {
-      if (!kIsWeb && Platform.isAndroid) {
+      if (_camera.isHardware && !kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
         final status = await Permission.camera.request();
         if (!status.isGranted) throw StateError('Camera permission is required.');
       }
@@ -205,10 +212,20 @@ class HardwareSyncController extends ChangeNotifier {
       _setPhase(ScanPhase.settling);
       // Steps 2–4 are driven from _onFrame by frame timestamps.
       _drained = Completer<void>();
-      await _drained!.future.timeout(
-        Duration(milliseconds: config.settleMs + config.baselineMs + config.responseMs + 4000),
-        onTimeout: () => throw StateError('Camera stopped delivering frames.'),
-      );
+      // The timeline runs on frame timestamps, so a slow device simply takes
+      // longer. Fail only if frames or results stop arriving altogether.
+      _lastProgress = DateTime.now();
+      final watchdog = Timer.periodic(const Duration(milliseconds: 500), (_) {
+        if (DateTime.now().difference(_lastProgress) > const Duration(seconds: 3)) {
+          _drained?.completeError(StateError('Camera stopped delivering frames.'));
+          _drained = null;
+        }
+      });
+      try {
+        await _drained!.future;
+      } finally {
+        watchdog.cancel();
+      }
 
       await _camera.unlock();
       _setPhase(ScanPhase.analyzing);
@@ -277,6 +294,8 @@ class HardwareSyncController extends ChangeNotifier {
   }
 
   void _onObservation(PupilObservation o) {
+    _lastProgress = DateTime.now();
+    final uiDue = _uiDue();
     _inFlight = math.max(0, _inFlight - 1);
     _latest = o;
 
@@ -306,17 +325,26 @@ class HardwareSyncController extends ChangeNotifier {
       final end = _recordEndUs;
       if (end == null || o.timestampUs <= end) {
         _recorded.add(o);
-        _appendLive(o);
+        _appendLive(o, publish: uiDue);
       }
       if (end != null && o.timestampUs >= end) {
+        liveCurve.value = List.unmodifiable(_livePoints);
         _drained?.complete();
         _drained = null;
       }
     }
-    notifyListeners();
+    if (_pupilLocked != wasLocked || uiDue) notifyListeners();
   }
 
-  void _appendLive(PupilObservation o) {
+  /// UI refresh is capped at ~30 Hz; data is still recorded at full rate.
+  bool _uiDue() {
+    final now = DateTime.now();
+    if (now.difference(_lastUi) < const Duration(milliseconds: 33)) return false;
+    _lastUi = now;
+    return true;
+  }
+
+  void _appendLive(PupilObservation o, {required bool publish}) {
     final d = o.diameterMm;
     final filter = _liveFilter;
     if (filter == null || _plannedFlashUs == null) return;
@@ -324,7 +352,8 @@ class HardwareSyncController extends ChangeNotifier {
     filter.update(t, d);
     if (!filter.initialized) return;
     final rel = (o.timestampUs - _plannedFlashUs!) / 1000;
-    liveCurve.value = [...liveCurve.value, KinematicPoint(rel, filter.position)];
+    _livePoints.add(KinematicPoint(rel, filter.position));
+    if (publish) liveCurve.value = List.unmodifiable(_livePoints);
   }
 
   // -------------------------------------------------------------- analysis
@@ -336,11 +365,8 @@ class HardwareSyncController extends ChangeNotifier {
       for (final o in _recorded)
         FrameSample(timestampUs: o.timestampUs, meanLuma: o.meanLuma, diameterMm: o.diameterMm),
     ];
-    final analyzer = this.analyzer;
-    final analysis = await Isolate.run(() {
-      final stim = PlrAnalyzer.detectStimulus(frames, commandOnUs: pulse.onUs);
-      return analyzer.analyze(frames, stim);
-    });
+    // Background isolate on device; inline on web.
+    final analysis = await compute(_runAnalysis, (analyzer, frames, pulse.onUs));
     return ScanResult(
       scanId: _newScanId(),
       eye: eye,
@@ -382,6 +408,7 @@ class HardwareSyncController extends ChangeNotifier {
     _recordEndUs = null;
     _recorded.clear();
     liveCurve.value = const [];
+    _livePoints.clear();
     _liveFilter = null;
   }
 

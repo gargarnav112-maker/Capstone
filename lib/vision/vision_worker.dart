@@ -1,83 +1,27 @@
-import 'dart:async';
-import 'dart:isolate';
 import 'dart:typed_data';
 
-import 'grayscale.dart';
-import 'pixel_scale.dart';
 import 'pupil_tracker.dart';
+import 'vision_worker_isolate.dart'
+    if (dart.library.js_interop) 'vision_worker_inline.dart' as impl;
 
-/// Runs the [PupilTracker] on a dedicated background isolate so 120 fps
-/// processing never competes with UI rasterisation. Frame bytes are moved
-/// with [TransferableTypedData] (zero-copy hand-off).
+/// Runs the [PupilTracker] off the UI path.
+///
+/// On iOS/Android this is a dedicated background isolate fed with zero-copy
+/// [TransferableTypedData]. The web build has no isolates, so frames are
+/// processed inline on the event loop.
 ///
 /// Everything stays in this process's memory; frames are dropped as soon as
 /// they are processed and are never written to disk.
-class VisionWorker {
-  VisionWorker._(this._isolate, this._toWorker, this._results);
+abstract interface class VisionWorker {
+  static Future<VisionWorker> spawn({double hvidMm = 11.7, double? fixedMmPerPx}) =>
+      impl.createVisionWorker(hvidMm: hvidMm, fixedMmPerPx: fixedMmPerPx);
 
-  final Isolate _isolate;
-  final SendPort _toWorker;
-  final Stream<PupilObservation> _results;
+  Stream<PupilObservation> get observations;
 
-  Stream<PupilObservation> get observations => _results;
-
-  static Future<VisionWorker> spawn({double hvidMm = 11.7, double? fixedMmPerPx}) async {
-    final fromWorker = ReceivePort();
-    final isolate = await Isolate.spawn(
-      _main,
-      (fromWorker.sendPort, hvidMm, fixedMmPerPx),
-      debugName: 'synapse-vision',
-    );
-    final broadcast = fromWorker.asBroadcastStream();
-    final toWorker = await broadcast.first as SendPort;
-    final results = broadcast
-        .where((m) => m is Map)
-        .map((m) => PupilObservation.fromMessage(m as Map<Object?, Object?>));
-    return VisionWorker._(isolate, toWorker, results);
-  }
-
-  void submit(Uint8List luma, int width, int height, int timestampUs, int frameIndex) {
-    _toWorker.send(<Object>[
-      TransferableTypedData.fromList([luma]),
-      width,
-      height,
-      timestampUs,
-      frameIndex,
-    ]);
-  }
+  void submit(Uint8List luma, int width, int height, int timestampUs, int frameIndex);
 
   /// Clears tracking state (Kalman priors, iris scale) between scans.
-  void reset() => _toWorker.send('reset');
+  void reset();
 
-  void dispose() {
-    _toWorker.send('stop');
-    _isolate.kill(priority: Isolate.beforeNextEvent);
-  }
-
-  static void _main((SendPort, double, double?) args) {
-    final (out, hvid, fixed) = args;
-    final inbox = ReceivePort();
-    out.send(inbox.sendPort);
-    final tracker = PupilTracker(
-      scale: fixed != null ? FixedScale(fixed) : IrisReferenceScale(hvidMm: hvid),
-    );
-    inbox.listen((msg) {
-      if (msg == 'reset') {
-        tracker.reset();
-        return;
-      }
-      if (msg == 'stop') {
-        inbox.close();
-        return;
-      }
-      final m = msg as List<Object?>;
-      final bytes = (m[0]! as TransferableTypedData).materialize().asUint8List();
-      final obs = tracker.process(
-        GrayImage(m[1]! as int, m[2]! as int, bytes),
-        timestampUs: m[3]! as int,
-        frameIndex: m[4]! as int,
-      );
-      out.send(obs.toMessage());
-    });
-  }
+  void dispose();
 }
