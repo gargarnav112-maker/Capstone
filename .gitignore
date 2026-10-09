@@ -46,3 +46,16 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# lyric-edit working files (large / reproducible media)
+work/models/
+work/frames/
+work/masks/
+work/sep/
+work/out/chunks/
+work/qa/
+work/ref/
+work/*.wav
+work/*.mp3
+work/*.mov
+work/out/TEST_*

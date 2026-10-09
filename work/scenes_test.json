@@ -1,0 +1,84 @@
+{
+ "handle": "@yourhandle",
+ "broll": {
+  "src": 13.75,
+  "speed": 0.5
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "start": 0,
+   "end": 2.686,
+   "layout": "circle"
+  },
+  {
+   "id": 2,
+   "start": 2.686,
+   "end": 5.372,
+   "layout": "kinetic",
+   "red": 0.0
+  },
+  {
+   "id": 3,
+   "start": 5.372,
+   "end": 8.058,
+   "layout": "phone"
+  },
+  {
+   "id": 4,
+   "start": 8.058,
+   "end": 10.744,
+   "layout": "strip",
+   "ramp": {
+    "a": 8.3,
+    "b": 9.0,
+    "c": 10.4,
+    "k": 0.4
+   }
+  },
+  {
+   "id": 5,
+   "start": 10.744,
+   "end": 13.195,
+   "layout": "panel"
+  },
+  {
+   "id": 6,
+   "start": 13.195,
+   "end": 14.565,
+   "layout": "wall"
+  },
+  {
+   "id": 7,
+   "start": 14.565,
+   "end": 16.0,
+   "layout": "end"
+  }
+ ],
+ "transitions": [
+  {
+   "t": 2.686,
+   "type": "flash"
+  },
+  {
+   "t": 5.372,
+   "type": "streak"
+  },
+  {
+   "t": 8.058,
+   "type": "zoom"
+  },
+  {
+   "t": 10.744,
+   "type": "streak"
+  },
+  {
+   "t": 13.195,
+   "type": "flash"
+  },
+  {
+   "t": 14.565,
+   "type": "zoom"
+  }
+ ]
+}

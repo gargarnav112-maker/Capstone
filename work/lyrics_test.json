@@ -1,0 +1,323 @@
+{
+"lines": [
+{
+"words": [
+{
+"w": "TESTWORD",
+"s": 0.058,
+"e": 0.439,
+"strong": true
+},
+{
+"w": "Ab",
+"s": 0.459,
+"e": 0.764,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 0.784,
+"e": 1.054,
+"strong": false
+},
+{
+"w": "Mid",
+"s": 1.074,
+"e": 1.327,
+"strong": false
+},
+{
+"w": "TEST",
+"s": 1.347,
+"e": 1.785,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "Xy",
+"s": 1.805,
+"e": 2.215,
+"strong": false
+},
+{
+"w": "PLACEHOLD",
+"s": 2.235,
+"e": 2.662,
+"strong": false
+},
+{
+"w": "Qa",
+"s": 2.682,
+"e": 2.97,
+"strong": true
+}
+]
+},
+{
+"words": [
+{
+"w": "TESTWORD",
+"s": 2.99,
+"e": 3.417,
+"strong": false
+},
+{
+"w": "Ab",
+"s": 3.437,
+"e": 3.794,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 3.814,
+"e": 4.119,
+"strong": false
+},
+{
+"w": "Mid",
+"s": 4.139,
+"e": 4.549,
+"strong": false
+},
+{
+"w": "TEST",
+"s": 4.569,
+"e": 4.99,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "Xy",
+"s": 5.01,
+"e": 5.355,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "PLACEHOLD",
+"s": 5.375,
+"e": 5.663,
+"strong": true
+},
+{
+"w": "Qa",
+"s": 5.683,
+"e": 6.006,
+"strong": false
+},
+{
+"w": "TESTWORD",
+"s": 6.026,
+"e": 6.36,
+"strong": false
+},
+{
+"w": "Ab",
+"s": 6.38,
+"e": 6.702,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 6.722,
+"e": 6.952,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "Mid",
+"s": 6.972,
+"e": 7.312,
+"strong": false
+},
+{
+"w": "TEST",
+"s": 7.332,
+"e": 7.561,
+"strong": false
+},
+{
+"w": "Xy",
+"s": 7.581,
+"e": 7.857,
+"strong": true
+},
+{
+"w": "PLACEHOLD",
+"s": 7.877,
+"e": 8.165,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "Qa",
+"s": 8.185,
+"e": 8.49,
+"strong": false
+},
+{
+"w": "TESTWORD",
+"s": 8.51,
+"e": 8.792,
+"strong": false
+},
+{
+"w": "Ab",
+"s": 8.812,
+"e": 9.227,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 9.247,
+"e": 9.57,
+"strong": false
+},
+{
+"w": "Mid",
+"s": 9.59,
+"e": 9.837,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "TEST",
+"s": 9.857,
+"e": 10.04,
+"strong": true
+},
+{
+"w": "Xy",
+"s": 10.06,
+"e": 10.557,
+"strong": false
+},
+{
+"w": "PLACEHOLD",
+"s": 10.577,
+"e": 11.126,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "Qa",
+"s": 11.146,
+"e": 11.439,
+"strong": false
+},
+{
+"w": "TESTWORD",
+"s": 11.459,
+"e": 11.921,
+"strong": false
+},
+{
+"w": "Ab",
+"s": 11.941,
+"e": 12.159,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 12.179,
+"e": 12.542,
+"strong": false
+},
+{
+"w": "Mid",
+"s": 12.562,
+"e": 12.96,
+"strong": true
+}
+]
+},
+{
+"words": [
+{
+"w": "TEST",
+"s": 12.98,
+"e": 13.239,
+"strong": false
+},
+{
+"w": "Xy",
+"s": 13.259,
+"e": 13.546,
+"strong": false
+}
+]
+},
+{
+"words": [
+{
+"w": "PLACEHOLD",
+"s": 13.566,
+"e": 13.831,
+"strong": false
+},
+{
+"w": "Qa",
+"s": 13.851,
+"e": 14.127,
+"strong": false
+},
+{
+"w": "TESTWORD",
+"s": 14.147,
+"e": 14.667,
+"strong": false
+},
+{
+"w": "Ab",
+"s": 14.687,
+"e": 14.899,
+"strong": false
+},
+{
+"w": "LONGESTWORDX",
+"s": 14.919,
+"e": 15.067,
+"strong": true
+}
+]
+},
+{
+"words": [
+{
+"w": "Mid",
+"s": 15.087,
+"e": 15.421,
+"strong": false
+},
+{
+"w": "TEST",
+"s": 15.441,
+"e": 15.862,
+"strong": false
+}
+]
+}
+],
+"TEST": true
+}
