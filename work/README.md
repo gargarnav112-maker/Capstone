@@ -11,6 +11,11 @@ python3 build_source.py REC.mov   # subject-centred 9:16 crop + dedupe + minterp
 python3 edl.py                # shotlist.md (all cuts in beats -> frames)
 python3 render.py ../output/final_edit.mp4
 python3 qc.py                 # ffprobe + cut / sync / black / flicker checks
+
+# CRAZY cut (54 cuts, same audio / grid / footage)
+python3 edl_crazy.py          # shotlist_crazy.md
+python3 render.py ../output/crazy_edit.mp4 --edl edl_crazy
+python3 qc.py ../output/crazy_edit.mp4 edl_crazy
 ```
 
 To change the end-card handle, edit `END_HANDLE` in `edl.py` and re-run `render.py`. It takes about 2.5 min.

@@ -11,3 +11,7 @@ sel.txt
 stills_list.txt
 *.log
 __pycache__/
+stills_crazy/
+stills_m/
+qc_mirror.jpg
+qc_crazy_mid.jpg

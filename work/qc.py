@@ -7,9 +7,10 @@ import sys
 import cv2
 import numpy as np
 
-import edl
+import importlib
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "../output/final_edit.mp4"
+edl = importlib.import_module(sys.argv[2] if len(sys.argv) > 2 else "edl")
 
 
 def probe(args):
@@ -70,7 +71,12 @@ for c in planned:
             beat_t = edl.bt(s["a"])
     err = (c / 30 - beat_t) * 1000
     print(f"     {c:5d}        {beat_t:7.3f}    {c/30:7.3f}   {err:+6.1f}   {m}: {diff[m-1]:.1f}{'  <-- MISMATCH' if m != c else ''}")
-checks["all cuts at planned frame (0 frame error)"] = all(m == c for m, c in zip(measured, planned))
+# a cut is "on its frame" when the planned frame carries a hard discontinuity; on dense
+# cuts (quarter-beats, whips, flashes) the window-argmax above can lock onto a neighbour.
+inshot = np.median([diff[i - 1] for i in range(1, len(F)) if i not in set(planned)])
+weak = [c for c in planned if diff[c - 1] < 3 * inshot]
+print(f"\nmin discontinuity at planned cuts {min(diff[c-1] for c in planned):.1f}, in-shot median {inshot:.1f}")
+checks[f"hard cut present on every planned frame (>=3x in-shot median) weak={weak}"] = not weak
 checks["all cuts within ½ frame of beat grid"] = all(abs(c / 30 - edl.bt(s["a"])) <= 1 / 60 + 1e-9
                                                     for c, s in zip(planned, edl.S[1:]))
 
@@ -81,7 +87,7 @@ checks["no unintended black frames"] = not black
 # flicker: a single frame whose luma departs from both neighbours by > 25 while they agree
 flick = [i for i in range(1, len(F) - 1)
          if abs(luma[i] - luma[i - 1]) > 25 and abs(luma[i] - luma[i + 1]) > 25 and abs(luma[i - 1] - luma[i + 1]) < 8]
-flash_frames = {s["f0"] + k for s in edl.S for k in range(3) if any(f.startswith("flash") for f in s["fx"])}
+flash_frames = {s["f0"] + k for s in edl.S for k in range(3) if any(f.startswith("flash") or f == "invert1" for f in s["fx"])}
 flick = [i for i in flick if i not in flash_frames]
 checks[f"no isolated flicker frames {flick}"] = not flick
 checks["first frame black/clean"] = luma[0] < 3
@@ -96,5 +102,5 @@ for k, val in checks.items():
 dump = sorted(set(planned + [0, 120, 240, 360, 477]))
 for n in dump:
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", OUT, "-vf", f"select=eq(n\\,{n})", "-frames:v", "1",
-                    f"qc_frames/f{n:03d}.jpg"])
+                    f"qc_frames/{edl.__name__}_f{n:03d}.jpg"])
 print("\nOVERALL:", "PASS" if ok else "FAIL")

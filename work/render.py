@@ -12,21 +12,29 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-import edl
-from edl import FPS, NFRAMES, S, bt, src_time
+import importlib
+
 from sources import SHOTS
+
+ap = argparse.ArgumentParser()
+ap.add_argument("out")
+ap.add_argument("--edl", default="edl", help="edit list module (edl = cinematic cut, edl_crazy = crazy cut)")
+ap.add_argument("--frames", default=None)
+ap.add_argument("--stills", default=None)
+ap.add_argument("--list", default="")
+args = ap.parse_args()
+
+edl = importlib.import_module(args.edl)
+FPS, NFRAMES, S, bt, bf, src_time = edl.FPS, edl.NFRAMES, edl.S, edl.bt, edl.bf, edl.src_time
+TEXT_HITS = getattr(edl, "TEXT_HITS", [(30, 32, "AUJLA")])
+TITLE_BEAT = getattr(edl, "TITLE_BEAT", 2)
+# half-beat pulse frames (for per-beat bounce / shake / RGB pulses inside a shot)
+PULSES = sorted({bf(x / 2) for x in range(-1, 80)})
 
 W, H = 1080, 1920
 FONT_SERIF = "/home/user/Capstone/assets/fonts/BodoniModa.ttf"
 FONT_SANS = "/home/user/Capstone/assets/fonts/Inter.ttf"
 RNG = np.random.default_rng(7)
-
-ap = argparse.ArgumentParser()
-ap.add_argument("out")
-ap.add_argument("--frames", default=None)
-ap.add_argument("--stills", default=None)
-ap.add_argument("--list", default="")
-args = ap.parse_args()
 
 # ----------------------------------------------------------------------------- source
 print("loading src120.mp4 ...", file=sys.stderr)
@@ -222,7 +230,8 @@ def title_alpha(tracking):
     return TITLE_LAYERS[key]
 
 
-DROP_TXT = text_layer("AUJLA", FONT_SANS, 215, 4, weight=b"Black")
+WORD_TXT = {w: text_layer(w, FONT_SANS, 215 if len(w) <= 5 else 185, 4, weight=b"Black")
+            for _, _, w in TEXT_HITS}
 END_TXT = text_layer(edl.END_HANDLE, FONT_SANS, 82, 8, weight=b"Medium")
 END_SUB = text_layer(edl.TITLE, FONT_SERIF, 42, 16, weight=b"Regular", fill=(236, 204, 150))
 
@@ -236,6 +245,8 @@ def render_shot_frame(s, n, extra_t=None):
     kn = s["f1"] - 1 - n                  # frames until shot end
     L = s["f1"] - s["f0"]
     u = (n - s["f0"]) / max(L - 1, 1)
+    if s.get("hold") and extra_t is None:   # stutter: repeat each source frame `hold` times
+        t = s["t0"] + (k // s["hold"]) * s["hold"] / FPS
     img = src_frame(s["src"], src_time(s, t), s["flip"])
     img = (np.clip(img.astype(np.float32) * LOOKS[s["src"]] / 255, 0, 1) * 255).astype(np.uint8)
 
@@ -254,8 +265,20 @@ def render_shot_frame(s, n, extra_t=None):
     elif d == "none":
         scale = 1.02
     fx = s["fx"]
-    if "drop" in fx:
+    if "drop" in fx or "shake" in fx or "shake_beats" in fx:
         scale = max(scale, 1.07)          # head-room for shake
+    since_pulse = k - max([0] + [p - s["f0"] for p in PULSES if s["f0"] <= p <= n])
+    if "bounce" in fx:
+        scale *= 1 + 0.075 * math.exp(-since_pulse / 2.2)
+    if "shake_beats" in fx:
+        sx, sy, sr = shake_offset(since_pulse, n - since_pulse, amp=16, frames=6)
+        dx += sx
+        dy += sy
+        rot += sr
+    if s["fx_in"] == "spin_in" and k < 5:
+        e = 1 - ease_out((k + 1) / 5)
+        rot += (9 if s["f0"] % 2 else -9) * e
+        scale *= 1 + 0.25 * e
     if "zoom_punch" in fx:
         scale *= 1.0 + 0.15 * ease_out(k / 4)
     if "shake" in fx:
@@ -288,6 +311,9 @@ def render_shot_frame(s, n, extra_t=None):
         out = place(img, scale, dx, dy, rot)
     if blur:
         out = hblur(out, blur)
+    if "mirror" in fx:                    # kaleido: left half reflected onto the right
+        out = out.copy()
+        out[:, W // 2:] = out[:, :W // 2][:, ::-1]
     return out
 
 
@@ -390,6 +416,8 @@ def render(n):
     t = n / FPS
     if s["src"] == "ENDCARD":
         out = finish(end_card(n, s), n)
+        if "glitch_in" in s["fx"]:
+            out = glitch(out, n - s["f0"], s["f0"])
         # final fade to true black (grain/dither included) over the last 4 frames
         kl = s["f1"] - 1 - n
         if kl < 4:
@@ -418,8 +446,11 @@ def render(n):
         img = glitch(img, k, s["f0"])
     if s["fx_in"] == "rgb_split" and k < 5:
         img = rgb_shift(img, 30 * (1 - k / 5) ** 2)
+    if "rgb_beats" in s["fx"]:
+        sp = k - max([0] + [p - s["f0"] for p in PULSES if s["f0"] <= p <= n])
+        img = rgb_shift(img, 22 * math.exp(-sp / 1.6))
 
-    drop = "drop" in s["fx"]
+    drop = "drop" in s["fx"] or "ca" in s["fx"]
     mood = 0.0
     if "breakdown_mood" in s["fx"]:
         mood = ease_in_out(k / 12)
@@ -428,7 +459,7 @@ def render(n):
     if drop:
         # chromatic aberration: subtle constant + spike on hits
         hit = 0.0
-        if "shake" in s["fx"] or "flash3" in s["fx"] or "flash2" in s["fx"]:
+        if any(f in s["fx"] for f in ("shake", "flash3", "flash2", "invert1")):
             hit = max(0.0, 1 - k / 6)
         g8 = (np.clip(g, 0, 1) * 255).astype(np.uint8)
         g = chroma_ab(g8, 3.0 + 9.0 * hit).astype(np.float32) / 255
@@ -438,17 +469,19 @@ def render(n):
 
     # --- text
     if "text_title" in s["fx"]:
-        ta, tb = bt(2), s["t1"]
+        ta, tb = bt(TITLE_BEAT), s["t1"]
         if ta - 0.01 <= t < tb:
             u = (t - ta) / (tb - ta)
             a, col = title_alpha(14 + 16 * ease_out(u))
             op = ease_out(min(1, (t - ta) / 0.18)) * (1 - ease_in_out((t - (tb - 0.20)) / 0.20) if t > tb - 0.20 else 1)
             g = composite_text(g, a, col, W / 2, H * 0.80, op, glow=0.35)
-    # drop text spans shots 24-26 (2 beats from the drop)
-    td0, td1 = bt(30), bt(32)
-    if td0 - 0.01 <= t < td1 - 0.5 / FPS:
-        kk = n - edl.bf(30)
-        a, col = DROP_TXT
+    # kinetic word hits (drop)
+    for ba, bb, word in TEXT_HITS:
+        td0, td1 = bt(ba), bt(bb)
+        if not (td0 - 0.01 <= t < td1 - 0.5 / FPS):
+            continue
+        kk = n - bf(ba)
+        a, col = WORD_TXT[word]
         sc = 1.0 + 0.2 * (1 - ease_out((kk + 1) / 4))
         if sc != 1.0:
             a = cv2.resize(a, None, fx=sc, fy=sc, interpolation=cv2.INTER_LINEAR)
@@ -464,6 +497,9 @@ def render(n):
     if "flash2" in s["fx"] and k < 2:
         a = [0.85, 0.35][k]
         g = g * (1 - a) + a
+
+    if "invert1" in s["fx"] and k < 1:
+        g = 1 - np.clip(g, 0, 1)
 
     # --- fade from black on beat 0
     if "fade_from_black" in s["fx"]:
