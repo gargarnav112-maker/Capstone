@@ -1,0 +1,858 @@
+[
+ {
+  "line": 0,
+  "idx": 0,
+  "text": "Bebe",
+  "gurmukhi": "ਬੇਬੇ",
+  "start": 172.181,
+  "end": 172.522,
+  "score": -8.843,
+  "char_scores": [
+   -7.49,
+   -8.8,
+   -10.07,
+   -9.01
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 1,
+  "text": "kehndi",
+  "gurmukhi": "ਕਹਿੰਦੀ",
+  "start": 172.642,
+  "end": 172.962,
+  "score": -9.04,
+  "char_scores": [
+   -6.52,
+   -10.48,
+   -9.93,
+   -11.06,
+   -10.32,
+   -5.94
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 2,
+  "text": "tainu",
+  "gurmukhi": "ਤੈਨੂੰ",
+  "start": 173.083,
+  "end": 173.263,
+  "score": -8.525,
+  "char_scores": [
+   -8.49,
+   -15.36,
+   -6.96,
+   -5.88,
+   -5.94
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 3,
+  "text": "vyahuna",
+  "gurmukhi": "ਵਿਆਹੁਣਾ",
+  "start": 173.323,
+  "end": 173.643,
+  "score": -7.393,
+  "char_scores": [
+   -5.94,
+   -4.96,
+   -12.02,
+   -7.0,
+   -9.81,
+   -5.64,
+   -6.38
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 4,
+  "text": "te",
+  "gurmukhi": "ਤੇ",
+  "start": 173.763,
+  "end": 173.844,
+  "score": -7.606,
+  "char_scores": [
+   -7.48,
+   -7.73
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 5,
+  "text": "mera",
+  "gurmukhi": "ਮੇਰਾ",
+  "start": 173.984,
+  "end": 174.144,
+  "score": -7.497,
+  "char_scores": [
+   -7.65,
+   -7.71,
+   -7.52,
+   -7.11
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 6,
+  "text": "shastar",
+  "gurmukhi": "ਸ਼ਸਤਰ",
+  "start": 174.224,
+  "end": 174.544,
+  "score": -6.764,
+  "char_scores": [
+   -7.68,
+   -6.1,
+   -6.32,
+   -6.58,
+   -7.13
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 7,
+  "text": "vi",
+  "gurmukhi": "ਵੀ",
+  "start": 174.665,
+  "end": 174.765,
+  "score": -8.818,
+  "char_scores": [
+   -9.9,
+   -7.73
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 8,
+  "text": "na",
+  "gurmukhi": "ਨਾ",
+  "start": 174.885,
+  "end": 174.965,
+  "score": -7.527,
+  "char_scores": [
+   -8.07,
+   -6.99
+  ]
+ },
+ {
+  "line": 0,
+  "idx": 9,
+  "text": "thaka",
+  "gurmukhi": "ਥੱਕਾ",
+  "start": 175.105,
+  "end": 175.466,
+  "score": -8.786,
+  "char_scores": [
+   -11.03,
+   -11.78,
+   -6.42,
+   -5.92
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 0,
+  "text": "Dass",
+  "gurmukhi": "ਦੱਸ",
+  "start": 175.746,
+  "end": 175.906,
+  "score": -7.901,
+  "char_scores": [
+   -8.92,
+   -7.4,
+   -7.38
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 1,
+  "text": "ki",
+  "gurmukhi": "ਕੀ",
+  "start": 176.006,
+  "end": 176.106,
+  "score": -6.498,
+  "char_scores": [
+   -6.39,
+   -6.61
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 2,
+  "text": "kar",
+  "gurmukhi": "ਕਰ",
+  "start": 176.247,
+  "end": 176.367,
+  "score": -6.693,
+  "char_scores": [
+   -6.7,
+   -6.69
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 3,
+  "text": "laina",
+  "gurmukhi": "ਲੈਣਾ",
+  "start": 176.487,
+  "end": 176.787,
+  "score": -6.69,
+  "char_scores": [
+   -6.61,
+   -6.83,
+   -5.89,
+   -7.43
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 4,
+  "text": "kavan",
+  "gurmukhi": "ਕਵਣ",
+  "start": 176.907,
+  "end": 177.288,
+  "score": -9.554,
+  "char_scores": [
+   -8.55,
+   -8.01,
+   -12.1
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 5,
+  "text": "ni",
+  "gurmukhi": "ਨੀ",
+  "start": 177.368,
+  "end": 177.468,
+  "score": -7.166,
+  "char_scores": [
+   -7.26,
+   -7.07
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 6,
+  "text": "mera",
+  "gurmukhi": "ਮੇਰਾ",
+  "start": 177.568,
+  "end": 177.728,
+  "score": -7.511,
+  "char_scores": [
+   -7.45,
+   -7.84,
+   -7.43,
+   -7.32
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 7,
+  "text": "baazan",
+  "gurmukhi": "ਬਾਜ਼ਾਂ",
+  "start": 177.809,
+  "end": 178.149,
+  "score": -7.207,
+  "char_scores": [
+   -7.13,
+   -6.3,
+   -7.26,
+   -9.64,
+   -7.37,
+   -5.54
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 8,
+  "text": "aala",
+  "gurmukhi": "ਆਲਾ",
+  "start": 178.389,
+  "end": 178.589,
+  "score": -6.774,
+  "char_scores": [
+   -7.04,
+   -6.76,
+   -6.52
+  ]
+ },
+ {
+  "line": 1,
+  "idx": 9,
+  "text": "raakha",
+  "gurmukhi": "ਰਾਖਾ",
+  "start": 178.73,
+  "end": 179.07,
+  "score": -7.251,
+  "char_scores": [
+   -7.27,
+   -7.59,
+   -8.05,
+   -6.1
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 0,
+  "text": "Rahan",
+  "gurmukhi": "ਰਾਹਾਂ",
+  "start": 179.39,
+  "end": 179.751,
+  "score": -6.216,
+  "char_scores": [
+   -6.72,
+   -6.1,
+   -5.71,
+   -7.24,
+   -5.32
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 1,
+  "text": "vich",
+  "gurmukhi": "ਵਿੱਚ",
+  "start": 179.811,
+  "end": 179.971,
+  "score": -6.179,
+  "char_scores": [
+   -5.39,
+   -7.25,
+   -5.36,
+   -6.72
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 2,
+  "text": "rode",
+  "gurmukhi": "ਰੋੜੇ",
+  "start": 180.071,
+  "end": 180.392,
+  "score": -6.344,
+  "char_scores": [
+   -6.06,
+   -5.86,
+   -6.63,
+   -6.83
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 3,
+  "text": "behna",
+  "gurmukhi": "ਬਹਿਣਾ",
+  "start": 180.712,
+  "end": 181.013,
+  "score": -7.242,
+  "char_scores": [
+   -9.77,
+   -5.42,
+   -7.28,
+   -7.04,
+   -6.7
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 4,
+  "text": "je",
+  "gurmukhi": "ਜੇ",
+  "start": 181.113,
+  "end": 181.193,
+  "score": -7.967,
+  "char_scores": [
+   -7.8,
+   -8.14
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 5,
+  "text": "yaaran",
+  "gurmukhi": "ਯਾਰਾਂ",
+  "start": 181.293,
+  "end": 181.553,
+  "score": -7.175,
+  "char_scores": [
+   -7.98,
+   -8.43,
+   -6.57,
+   -6.37,
+   -6.52
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 6,
+  "text": "nal",
+  "gurmukhi": "ਨਾਲ",
+  "start": 181.613,
+  "end": 181.753,
+  "score": -9.156,
+  "char_scores": [
+   -6.58,
+   -7.18,
+   -13.71
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 7,
+  "text": "paina",
+  "gurmukhi": "ਪੈਣਾ",
+  "start": 181.834,
+  "end": 182.154,
+  "score": -8.403,
+  "char_scores": [
+   -7.64,
+   -12.2,
+   -6.96,
+   -6.81
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 8,
+  "text": "kass",
+  "gurmukhi": "ਕੱਸ",
+  "start": 182.294,
+  "end": 182.494,
+  "score": -6.584,
+  "char_scores": [
+   -8.04,
+   -5.36,
+   -6.35
+  ]
+ },
+ {
+  "line": 2,
+  "idx": 9,
+  "text": "ke",
+  "gurmukhi": "ਕੇ",
+  "start": 182.635,
+  "end": 182.835,
+  "score": -7.645,
+  "char_scores": [
+   -6.78,
+   -8.51
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 0,
+  "text": "Jatt",
+  "gurmukhi": "ਜੱਟ",
+  "start": 182.935,
+  "end": 183.075,
+  "score": -7.234,
+  "char_scores": [
+   -7.94,
+   -7.91,
+   -5.85
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 1,
+  "text": "mudd",
+  "gurmukhi": "ਮੁੱਢ",
+  "start": 183.155,
+  "end": 183.295,
+  "score": -9.553,
+  "char_scores": [
+   -7.2,
+   -8.26,
+   -10.21,
+   -12.53
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 2,
+  "text": "ton",
+  "gurmukhi": "ਤੋਂ",
+  "start": 183.416,
+  "end": 183.536,
+  "score": -5.662,
+  "char_scores": [
+   -6.5,
+   -4.8,
+   -5.69
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 3,
+  "text": "zehri",
+  "gurmukhi": "ਜ਼ਹਿਰੀ",
+  "start": 183.636,
+  "end": 183.976,
+  "score": -7.718,
+  "char_scores": [
+   -7.04,
+   -9.69,
+   -8.71,
+   -7.4,
+   -6.86,
+   -6.6
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 4,
+  "text": "naag",
+  "gurmukhi": "ਨਾਗ",
+  "start": 184.317,
+  "end": 184.557,
+  "score": -6.443,
+  "char_scores": [
+   -6.45,
+   -5.59,
+   -7.28
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 5,
+  "text": "ni",
+  "gurmukhi": "ਨੀ",
+  "start": 184.677,
+  "end": 184.757,
+  "score": -7.062,
+  "char_scores": [
+   -7.18,
+   -6.94
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 6,
+  "text": "reha",
+  "gurmukhi": "ਰਿਹਾ",
+  "start": 184.877,
+  "end": 185.058,
+  "score": -5.788,
+  "char_scores": [
+   -6.9,
+   -4.53,
+   -5.31,
+   -6.41
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 7,
+  "text": "koi",
+  "gurmukhi": "ਕੋਈ",
+  "start": 185.178,
+  "end": 185.318,
+  "score": -7.893,
+  "char_scores": [
+   -7.15,
+   -8.55,
+   -7.99
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 8,
+  "text": "sanu",
+  "gurmukhi": "ਸਾਨੂੰ",
+  "start": 185.418,
+  "end": 185.758,
+  "score": -7.261,
+  "char_scores": [
+   -7.92,
+   -7.25,
+   -7.35,
+   -7.04,
+   -6.75
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 9,
+  "text": "dass",
+  "gurmukhi": "ਡੱਸ",
+  "start": 185.859,
+  "end": 186.079,
+  "score": -7.048,
+  "char_scores": [
+   -7.85,
+   -6.39,
+   -6.9
+  ]
+ },
+ {
+  "line": 3,
+  "idx": 10,
+  "text": "ke",
+  "gurmukhi": "ਕੇ",
+  "start": 186.219,
+  "end": 186.439,
+  "score": -7.133,
+  "char_scores": [
+   -6.12,
+   -8.15
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 0,
+  "text": "Baabe",
+  "gurmukhi": "ਬਾਬੇ",
+  "start": 186.543,
+  "end": 186.883,
+  "score": -10.601,
+  "char_scores": [
+   -10.24,
+   -10.21,
+   -12.22,
+   -9.74
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 1,
+  "text": "di",
+  "gurmukhi": "ਦੀ",
+  "start": 186.984,
+  "end": 187.084,
+  "score": -10.638,
+  "char_scores": [
+   -10.65,
+   -10.62
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 2,
+  "text": "sanu",
+  "gurmukhi": "ਸਾਨੂੰ",
+  "start": 187.204,
+  "end": 187.545,
+  "score": -10.135,
+  "char_scores": [
+   -11.69,
+   -11.37,
+   -10.4,
+   -9.78,
+   -7.43
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 3,
+  "text": "baksh",
+  "gurmukhi": "ਬਖ਼ਸ਼",
+  "start": 187.645,
+  "end": 188.026,
+  "score": -10.791,
+  "char_scores": [
+   -10.51,
+   -9.68,
+   -12.26,
+   -11.01,
+   -10.51
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 4,
+  "text": "ae",
+  "gurmukhi": "ਏ",
+  "start": 188.106,
+  "end": 188.126,
+  "score": -13.822,
+  "char_scores": [
+   -13.82
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 5,
+  "text": "kann",
+  "gurmukhi": "ਕੰਨ",
+  "start": 188.346,
+  "end": 188.466,
+  "score": -10.372,
+  "char_scores": [
+   -9.89,
+   -12.16,
+   -9.06
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 6,
+  "text": "nattiyan",
+  "gurmukhi": "ਨੱਤੀਆਂ",
+  "start": 188.526,
+  "end": 188.907,
+  "score": -9.697,
+  "char_scores": [
+   -9.19,
+   -12.78,
+   -9.8,
+   -8.29,
+   -9.35,
+   -8.76
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 7,
+  "text": "gaani",
+  "gurmukhi": "ਗਾਨੀ",
+  "start": 189.027,
+  "end": 189.328,
+  "score": -10.452,
+  "char_scores": [
+   -10.81,
+   -10.66,
+   -10.07,
+   -10.27
+  ]
+ },
+ {
+  "line": 4,
+  "idx": 8,
+  "text": "lashke",
+  "gurmukhi": "ਲਿਸ਼ਕੇ",
+  "start": 189.448,
+  "end": 189.909,
+  "score": -11.332,
+  "char_scores": [
+   -10.41,
+   -15.38,
+   -11.56,
+   -12.31,
+   -8.94,
+   -9.39
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 0,
+  "text": "Ni",
+  "gurmukhi": "ਨੀ",
+  "start": 190.109,
+  "end": 190.25,
+  "score": -10.598,
+  "char_scores": [
+   -10.48,
+   -10.72
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 1,
+  "text": "modhe",
+  "gurmukhi": "ਮੋਢੇ",
+  "start": 190.33,
+  "end": 190.65,
+  "score": -9.679,
+  "char_scores": [
+   -8.92,
+   -9.45,
+   -10.16,
+   -10.19
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 2,
+  "text": "paundi",
+  "gurmukhi": "ਪਾਉਂਦੀ",
+  "start": 190.791,
+  "end": 191.131,
+  "score": -10.352,
+  "char_scores": [
+   -10.31,
+   -11.08,
+   -9.48,
+   -9.39,
+   -11.57,
+   -10.29
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 3,
+  "text": "jhummar",
+  "gurmukhi": "ਝੁੰਮਰ",
+  "start": 191.472,
+  "end": 191.852,
+  "score": -10.574,
+  "char_scores": [
+   -13.77,
+   -9.42,
+   -9.32,
+   -10.98,
+   -9.39
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 4,
+  "text": "dunaali",
+  "gurmukhi": "ਦੁਨਾਲੀ",
+  "start": 192.033,
+  "end": 192.413,
+  "score": -11.599,
+  "char_scores": [
+   -11.15,
+   -14.82,
+   -9.22,
+   -10.99,
+   -10.5,
+   -12.91
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 5,
+  "text": "keh",
+  "gurmukhi": "ਕਹਿ",
+  "start": 192.574,
+  "end": 192.734,
+  "score": -11.263,
+  "char_scores": [
+   -10.25,
+   -12.07,
+   -11.47
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 6,
+  "text": "ke",
+  "gurmukhi": "ਕੇ",
+  "start": 192.834,
+  "end": 192.914,
+  "score": -9.92,
+  "char_scores": [
+   -9.09,
+   -10.75
+  ]
+ },
+ {
+  "line": 5,
+  "idx": 7,
+  "text": "ashke",
+  "gurmukhi": "ਅਸ਼ਕੇ",
+  "start": 193.115,
+  "end": 193.495,
+  "score": -10.921,
+  "char_scores": [
+   -12.6,
+   -10.95,
+   -11.83,
+   -8.9,
+   -10.32
+  ]
+ }
+]

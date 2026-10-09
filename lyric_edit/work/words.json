@@ -1,0 +1,582 @@
+[
+ {
+  "line": 0,
+  "idx": 0,
+  "text": "BEBE",
+  "start_raw": 0.181,
+  "start": 0.21,
+  "end": 0.55,
+  "snapped": true,
+  "snap_ms": 29
+ },
+ {
+  "line": 0,
+  "idx": 1,
+  "text": "KEHNDI",
+  "start_raw": 0.622,
+  "start": 0.63,
+  "end": 0.99,
+  "snapped": true,
+  "snap_ms": 8
+ },
+ {
+  "line": 0,
+  "idx": 2,
+  "text": "TAINU",
+  "start_raw": 1.083,
+  "start": 1.1,
+  "end": 1.263,
+  "snapped": true,
+  "snap_ms": 17
+ },
+ {
+  "line": 0,
+  "idx": 3,
+  "text": "VYAHUNA",
+  "start_raw": 1.303,
+  "start": 1.28,
+  "end": 1.7,
+  "snapped": true,
+  "snap_ms": -23
+ },
+ {
+  "line": 0,
+  "idx": 4,
+  "text": "TE",
+  "start_raw": 1.743,
+  "start": 1.77,
+  "end": 1.96,
+  "snapped": true,
+  "snap_ms": 27
+ },
+ {
+  "line": 0,
+  "idx": 5,
+  "text": "MERA",
+  "start_raw": 1.964,
+  "start": 2.0,
+  "end": 2.19,
+  "snapped": true,
+  "snap_ms": 36
+ },
+ {
+  "line": 0,
+  "idx": 6,
+  "text": "SHASTAR",
+  "start_raw": 2.184,
+  "start": 2.22,
+  "end": 2.61,
+  "snapped": true,
+  "snap_ms": 36
+ },
+ {
+  "line": 0,
+  "idx": 7,
+  "text": "VI",
+  "start_raw": 2.665,
+  "start": 2.69,
+  "end": 2.84,
+  "snapped": true,
+  "snap_ms": 25
+ },
+ {
+  "line": 0,
+  "idx": 8,
+  "text": "NA",
+  "start_raw": 2.865,
+  "start": 2.87,
+  "end": 3.02,
+  "snapped": true,
+  "snap_ms": 5
+ },
+ {
+  "line": 0,
+  "idx": 9,
+  "text": "THAKA",
+  "start_raw": 3.085,
+  "start": 3.09,
+  "end": 3.56,
+  "snapped": true,
+  "snap_ms": 5
+ },
+ {
+  "line": 1,
+  "idx": 0,
+  "text": "DASS",
+  "start_raw": 3.746,
+  "start": 3.76,
+  "end": 3.94,
+  "snapped": true,
+  "snap_ms": 14
+ },
+ {
+  "line": 1,
+  "idx": 1,
+  "text": "KI",
+  "start_raw": 3.986,
+  "start": 3.98,
+  "end": 4.14,
+  "snapped": true,
+  "snap_ms": -6
+ },
+ {
+  "line": 1,
+  "idx": 2,
+  "text": "KAR",
+  "start_raw": 4.227,
+  "start": 4.22,
+  "end": 4.4,
+  "snapped": true,
+  "snap_ms": -7
+ },
+ {
+  "line": 1,
+  "idx": 3,
+  "text": "LAINA",
+  "start_raw": 4.467,
+  "start": 4.44,
+  "end": 4.83,
+  "snapped": true,
+  "snap_ms": -27
+ },
+ {
+  "line": 1,
+  "idx": 4,
+  "text": "KAVAN",
+  "start_raw": 4.887,
+  "start": 4.88,
+  "end": 5.31,
+  "snapped": true,
+  "snap_ms": -7
+ },
+ {
+  "line": 1,
+  "idx": 5,
+  "text": "NI",
+  "start_raw": 5.348,
+  "start": 5.35,
+  "end": 5.52,
+  "snapped": true,
+  "snap_ms": 2
+ },
+ {
+  "line": 1,
+  "idx": 6,
+  "text": "MERA",
+  "start_raw": 5.548,
+  "start": 5.56,
+  "end": 5.73,
+  "snapped": true,
+  "snap_ms": 12
+ },
+ {
+  "line": 1,
+  "idx": 7,
+  "text": "BAAZAN",
+  "start_raw": 5.788,
+  "start": 5.78,
+  "end": 6.29,
+  "snapped": true,
+  "snap_ms": -8
+ },
+ {
+  "line": 1,
+  "idx": 8,
+  "text": "AALA",
+  "start_raw": 6.329,
+  "start": 6.329,
+  "end": 6.66,
+  "snapped": false,
+  "snap_ms": 0
+ },
+ {
+  "line": 1,
+  "idx": 9,
+  "text": "RAAKHA",
+  "start_raw": 6.69,
+  "start": 6.7,
+  "end": 7.16,
+  "snapped": true,
+  "snap_ms": 10
+ },
+ {
+  "line": 2,
+  "idx": 0,
+  "text": "RAHAN",
+  "start_raw": 7.37,
+  "start": 7.36,
+  "end": 7.751,
+  "snapped": true,
+  "snap_ms": -10
+ },
+ {
+  "line": 2,
+  "idx": 1,
+  "text": "VICH",
+  "start_raw": 7.811,
+  "start": 7.79,
+  "end": 8.04,
+  "snapped": true,
+  "snap_ms": -21
+ },
+ {
+  "line": 2,
+  "idx": 2,
+  "text": "RODE",
+  "start_raw": 8.071,
+  "start": 8.071,
+  "end": 8.46,
+  "snapped": false,
+  "snap_ms": 0
+ },
+ {
+  "line": 2,
+  "idx": 3,
+  "text": "BEHNA",
+  "start_raw": 8.712,
+  "start": 8.71,
+  "end": 9.06,
+  "snapped": true,
+  "snap_ms": -2
+ },
+ {
+  "line": 2,
+  "idx": 4,
+  "text": "JE",
+  "start_raw": 9.113,
+  "start": 9.1,
+  "end": 9.26,
+  "snapped": true,
+  "snap_ms": -13
+ },
+ {
+  "line": 2,
+  "idx": 5,
+  "text": "YAARAN",
+  "start_raw": 9.293,
+  "start": 9.293,
+  "end": 9.56,
+  "snapped": false,
+  "snap_ms": 0
+ },
+ {
+  "line": 2,
+  "idx": 6,
+  "text": "NAL",
+  "start_raw": 9.593,
+  "start": 9.6,
+  "end": 9.773,
+  "snapped": true,
+  "snap_ms": 7
+ },
+ {
+  "line": 2,
+  "idx": 7,
+  "text": "PAINA",
+  "start_raw": 9.814,
+  "start": 9.84,
+  "end": 10.18,
+  "snapped": true,
+  "snap_ms": 26
+ },
+ {
+  "line": 2,
+  "idx": 8,
+  "text": "KASS",
+  "start_raw": 10.274,
+  "start": 10.28,
+  "end": 10.56,
+  "snapped": true,
+  "snap_ms": 6
+ },
+ {
+  "line": 2,
+  "idx": 9,
+  "text": "KE",
+  "start_raw": 10.635,
+  "start": 10.65,
+  "end": 10.88,
+  "snapped": true,
+  "snap_ms": 15
+ },
+ {
+  "line": 3,
+  "idx": 0,
+  "text": "JATT",
+  "start_raw": 10.935,
+  "start": 10.92,
+  "end": 11.075,
+  "snapped": true,
+  "snap_ms": -15
+ },
+ {
+  "line": 3,
+  "idx": 1,
+  "text": "MUDD",
+  "start_raw": 11.155,
+  "start": 11.13,
+  "end": 11.3,
+  "snapped": true,
+  "snap_ms": -25
+ },
+ {
+  "line": 3,
+  "idx": 2,
+  "text": "TON",
+  "start_raw": 11.395,
+  "start": 11.34,
+  "end": 11.58,
+  "snapped": true,
+  "snap_ms": -55
+ },
+ {
+  "line": 3,
+  "idx": 3,
+  "text": "ZEHRI",
+  "start_raw": 11.616,
+  "start": 11.616,
+  "end": 12.03,
+  "snapped": false,
+  "snap_ms": 0
+ },
+ {
+  "line": 3,
+  "idx": 4,
+  "text": "NAAG",
+  "start_raw": 12.297,
+  "start": 12.32,
+  "end": 12.63,
+  "snapped": true,
+  "snap_ms": 23
+ },
+ {
+  "line": 3,
+  "idx": 5,
+  "text": "NI",
+  "start_raw": 12.657,
+  "start": 12.67,
+  "end": 12.81,
+  "snapped": true,
+  "snap_ms": 13
+ },
+ {
+  "line": 3,
+  "idx": 6,
+  "text": "REHA",
+  "start_raw": 12.857,
+  "start": 12.85,
+  "end": 13.09,
+  "snapped": true,
+  "snap_ms": -7
+ },
+ {
+  "line": 3,
+  "idx": 7,
+  "text": "KOI",
+  "start_raw": 13.158,
+  "start": 13.19,
+  "end": 13.43,
+  "snapped": true,
+  "snap_ms": 32
+ },
+ {
+  "line": 3,
+  "idx": 8,
+  "text": "SANU",
+  "start_raw": 13.398,
+  "start": 13.46,
+  "end": 13.77,
+  "snapped": true,
+  "snap_ms": 62
+ },
+ {
+  "line": 3,
+  "idx": 9,
+  "text": "DASS",
+  "start_raw": 13.859,
+  "start": 13.84,
+  "end": 14.15,
+  "snapped": true,
+  "snap_ms": -19
+ },
+ {
+  "line": 3,
+  "idx": 10,
+  "text": "KE",
+  "start_raw": 14.219,
+  "start": 14.21,
+  "end": 14.47,
+  "snapped": true,
+  "snap_ms": -9
+ },
+ {
+  "line": 4,
+  "idx": 0,
+  "text": "BAABE",
+  "start_raw": 14.523,
+  "start": 14.53,
+  "end": 14.94,
+  "snapped": true,
+  "snap_ms": 7
+ },
+ {
+  "line": 4,
+  "idx": 1,
+  "text": "DI",
+  "start_raw": 14.964,
+  "start": 14.97,
+  "end": 15.19,
+  "snapped": true,
+  "snap_ms": 6
+ },
+ {
+  "line": 4,
+  "idx": 2,
+  "text": "SANU",
+  "start_raw": 15.184,
+  "start": 15.22,
+  "end": 15.525,
+  "snapped": true,
+  "snap_ms": 36
+ },
+ {
+  "line": 4,
+  "idx": 3,
+  "text": "BAKSH",
+  "start_raw": 15.625,
+  "start": 15.65,
+  "end": 16.04,
+  "snapped": true,
+  "snap_ms": 25
+ },
+ {
+  "line": 4,
+  "idx": 4,
+  "text": "AE",
+  "start_raw": 16.086,
+  "start": 16.08,
+  "end": 16.16,
+  "snapped": true,
+  "snap_ms": -6
+ },
+ {
+  "line": 4,
+  "idx": 5,
+  "text": "KANN",
+  "start_raw": 16.326,
+  "start": 16.32,
+  "end": 16.466,
+  "snapped": true,
+  "snap_ms": -6
+ },
+ {
+  "line": 4,
+  "idx": 6,
+  "text": "NATTIYAN",
+  "start_raw": 16.526,
+  "start": 16.55,
+  "end": 16.94,
+  "snapped": true,
+  "snap_ms": 24
+ },
+ {
+  "line": 4,
+  "idx": 7,
+  "text": "GAANI",
+  "start_raw": 16.987,
+  "start": 16.98,
+  "end": 17.37,
+  "snapped": true,
+  "snap_ms": -7
+ },
+ {
+  "line": 4,
+  "idx": 8,
+  "text": "LASHKE",
+  "start_raw": 17.428,
+  "start": 17.41,
+  "end": 18.02,
+  "snapped": true,
+  "snap_ms": -18
+ },
+ {
+  "line": 5,
+  "idx": 0,
+  "text": "NI",
+  "start_raw": 18.129,
+  "start": 18.12,
+  "end": 18.28,
+  "snapped": true,
+  "snap_ms": -9
+ },
+ {
+  "line": 5,
+  "idx": 1,
+  "text": "MODHE",
+  "start_raw": 18.33,
+  "start": 18.32,
+  "end": 18.68,
+  "snapped": true,
+  "snap_ms": -10
+ },
+ {
+  "line": 5,
+  "idx": 2,
+  "text": "PAUNDI",
+  "start_raw": 18.77,
+  "start": 18.79,
+  "end": 19.19,
+  "snapped": true,
+  "snap_ms": 20
+ },
+ {
+  "line": 5,
+  "idx": 3,
+  "text": "JHUMMAR",
+  "start_raw": 19.472,
+  "start": 19.45,
+  "end": 19.94,
+  "snapped": true,
+  "snap_ms": -22
+ },
+ {
+  "line": 5,
+  "idx": 4,
+  "text": "DUNAALI",
+  "start_raw": 20.013,
+  "start": 20.01,
+  "end": 20.47,
+  "snapped": true,
+  "snap_ms": -3
+ },
+ {
+  "line": 5,
+  "idx": 5,
+  "text": "KEH",
+  "start_raw": 20.554,
+  "start": 20.57,
+  "end": 20.7,
+  "snapped": true,
+  "snap_ms": 16
+ },
+ {
+  "line": 5,
+  "idx": 6,
+  "text": "KE",
+  "start_raw": 20.794,
+  "start": 20.74,
+  "end": 21.05,
+  "snapped": true,
+  "snap_ms": -54
+ },
+ {
+  "line": 5,
+  "idx": 7,
+  "text": "ASHKE",
+  "start_raw": 21.095,
+  "start": 21.11,
+  "end": 21.56,
+  "snapped": true,
+  "snap_ms": 15
+ }
+]

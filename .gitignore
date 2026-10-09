@@ -46,3 +46,9 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# lyric edit: large intermediates / source media stay local
+lyric_edit/work/*
+!lyric_edit/work/*.json
+lyric_edit/out/master_crf12.mp4
+lyric_edit/out/draft_*.mp4
