@@ -1,0 +1,13 @@
+# large / regenerable intermediates
+src120.mp4
+source_crop.mp4
+full_audio.wav
+stills1/
+src_frames/
+qc_frames/
+qc1.jpg
+qc_full.jpg
+sel.txt
+stills_list.txt
+*.log
+__pycache__/
